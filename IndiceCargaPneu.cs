@@ -1,6 +1,6 @@
 ﻿namespace Poo.Conceitos
 {
-    public class IndiceCargaPneu
+    public struct IndiceCargaPneu
     {
         public int Indice { get; }
 

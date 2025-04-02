@@ -1,14 +1,26 @@
 ﻿namespace Poo.Conceitos
 {
-    public class Medida
+    public struct Medida
     {
-        public int Largura { get; set; }
-        public int Perfil { get; set; }
-        public char Construcao { get; set; }
-        public float Aro { get; set; }
+        public Medida(int largura, int perfil, char construcao, 
+                      float aro, IndiceCargaPneu indiceCarga, 
+                      string indiceVelocidade)
+        {
+            Largura = largura;
+            Perfil = perfil;
+            Construcao = construcao;
+            Aro = aro;
+            IndiceCarga = indiceCarga;
+            IndiceVelocidade = indiceVelocidade;
+        }
 
-        public IndiceCargaPneu IndiceCarga { get; set; }
+        public int Largura { get; }
+        public int Perfil { get; }
+        public char Construcao { get; }
+        public float Aro { get; }
 
-        public string IndiceVelocidade { get; set; }
+        public IndiceCargaPneu IndiceCarga { get; }
+
+        public string IndiceVelocidade { get; }
     }
 }

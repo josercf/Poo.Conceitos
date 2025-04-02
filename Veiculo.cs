@@ -28,10 +28,10 @@ namespace Poo.Conceitos
                 throw new Exception($"Já existe um pneu nessa posição. ({posicao})");
             }
 
-            pneu.Medida.IndiceCarga = "94";
-            if (pneu.Medida.IndiceCarga > 94)
+            float pesoPorPneu = CalcularPesoPorPneu();
+            if (!pneu.SuportaPeso(pesoPorPneu))
             {
-                throw new Exception("O índice de carga do pneu não é 94");
+                throw new Exception("O pneu não suporta o peso do veículo");
             }
 
 

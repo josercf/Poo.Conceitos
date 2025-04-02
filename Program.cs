@@ -10,18 +10,23 @@
             Veiculo mustang = new Veiculo();
             mustang.PesoMaximo = 3_262.50f;
 
+
             //Comentamos pois não podemos gerenciar a lista de pneus diretamente
             //utilizamos encapsulamento para garantir a manipulação correta dos pneus
             //mustang.Pneus = new Dictionary<string, Pneu>();
 
 
-            Pneu dd = new Pneu(); //Dianteiro Direito
-            dd.Marca = "Pirelli";
-            dd.Medida = new Medida();
-            dd.Medida.Aro = 17;
-            dd.Medida.Largura = 225;
-            dd.Medida.Perfil = 45;
-            dd.Medida.Construcao = 'R';
+            Medida medida = new Medida(
+                largura: 225,
+                perfil: 45,
+                construcao: 'R',
+                aro: 17,
+                indiceCarga: IndiceCargaPneu.I94,
+                indiceVelocidade: "W"
+                );
+
+            Pneu dd = new Pneu("Pirelli", medida); //Dianteiro Direito
+
 
             //Alteramos o tipo de string para um objeto
             //com o objetivo de manipular mais dados e realizar validações
@@ -31,7 +36,7 @@
             //O objetivo é ter controle sobre os dados
             //dd.Medida.IndiceCarga = new IndiceCargaPneu(94, 670);
 
-            dd.Medida.IndiceCarga = IndiceCargaPneu.I80;
+            //dd.Medida.IndiceCarga = IndiceCargaPneu.I80;
             //Alteramos a informação para o construtor.
             //Só movemos o problema de lugar
             //dd.Medida.IndiceCarga.Indice = 94;
@@ -39,7 +44,7 @@
 
 
 
-            dd.Medida.IndiceVelocidade = "W";
+            //dd.Medida.IndiceVelocidade = "W";
 
 
             try
@@ -48,7 +53,7 @@
                 //mustang.Pneus.Add("DD", dd);
                 mustang.AdicionarPneu("DD", dd);
 
-                Pneu de = dd with { Marca = "Goodyear" }; //Dianteiro Esquerdo
+                Pneu de = new Pneu("Goodyear", medida); //Dianteiro Esquerdo
                 mustang.AdicionarPneu("DE", de);
 
                 Pneu td = dd with { }; //Traseiro Direito
@@ -57,7 +62,7 @@
                 //Pneu te = dd with { Marca = "Continental" }; //Traseiro Esquerdo
                 //mustang.AdicionarPneu("TE", te);
 
-                Pneu e = dd with { Marca = "Continental" }; //Traseiro Esquerdo
+                Pneu e = dd with {  }; //Traseiro Esquerdo
                 mustang.AdicionarPneu("DD", e);
             }
             catch (Exception ex)

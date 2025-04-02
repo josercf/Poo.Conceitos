@@ -2,7 +2,18 @@
 {
     public record Pneu
     {
-        public string Marca { get; set; }
-        public Medida Medida{ get; set; }
+        public Pneu(string marca, Medida medida)
+        {
+            Marca = marca;
+            Medida = medida;
+        }
+
+        public string Marca { get; }
+        public Medida Medida { get; }
+
+        public bool SuportaPeso(float peso)
+        {
+            return peso <= Medida.IndiceCarga.Carga;
+        }
     }
 }
