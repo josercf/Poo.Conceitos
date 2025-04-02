@@ -7,7 +7,7 @@
         public char Construcao { get; set; }
         public float Aro { get; set; }
 
-        public string IndiceCarga { get; set; }
+        public IndiceCargaPneu IndiceCarga { get; set; }
 
         public string IndiceVelocidade { get; set; }
     }
