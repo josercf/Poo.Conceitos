@@ -5,47 +5,26 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-
-
-            Veiculo mustang = new Veiculo();
-            mustang.PesoMaximo = 3_262.50f;
-
-
-            //Comentamos pois não podemos gerenciar a lista de pneus diretamente
-            //utilizamos encapsulamento para garantir a manipulação correta dos pneus
-            //mustang.Pneus = new Dictionary<string, Pneu>();
-
-
+            
             Medida medida = new Medida(
                 largura: 225,
                 perfil: 45,
                 construcao: 'R',
                 aro: 17,
-                indiceCarga: IndiceCargaPneu.I94,
+                indiceCarga: IndiceCargaPneu.I75, 
                 indiceVelocidade: "W"
-                );
+            );
 
+
+            Moto kawazaki = new Moto();
+            kawazaki.AdicionarPneu("D", new Pneu("XX", medida));
+            kawazaki.AdicionarPneu("T", new Pneu("XX", medida));
+
+
+            CarroPasseio mustang = new  CarroPasseio();
+            mustang.PesoMaximo = 3_262.50f;
+           
             Pneu dd = new Pneu("Pirelli", medida); //Dianteiro Direito
-
-
-            //Alteramos o tipo de string para um objeto
-            //com o objetivo de manipular mais dados e realizar validações
-            //dd.Medida.IndiceCarga = "94";
-
-            //Converteos o construtor para privado, 
-            //O objetivo é ter controle sobre os dados
-            //dd.Medida.IndiceCarga = new IndiceCargaPneu(94, 670);
-
-            //dd.Medida.IndiceCarga = IndiceCargaPneu.I80;
-            //Alteramos a informação para o construtor.
-            //Só movemos o problema de lugar
-            //dd.Medida.IndiceCarga.Indice = 94;
-            //dd.Medida.IndiceCarga.Carga = 670;
-
-
-
-            //dd.Medida.IndiceVelocidade = "W";
-
 
             try
             {
@@ -54,13 +33,10 @@
                 mustang.AdicionarPneu("DD", dd);
 
                 Pneu de = new Pneu("Goodyear", medida); //Dianteiro Esquerdo
-                mustang.AdicionarPneu("DE", de);
+                mustang.AdicionarPneu("DD", de);
 
                 Pneu td = dd with { }; //Traseiro Direito
                 mustang.AdicionarPneu("TD", td);
-
-                //Pneu te = dd with { Marca = "Continental" }; //Traseiro Esquerdo
-                //mustang.AdicionarPneu("TE", te);
 
                 Pneu e = dd with {  }; //Traseiro Esquerdo
                 mustang.AdicionarPneu("DD", e);
@@ -79,16 +55,31 @@
                 Console.WriteLine("Indice de Velocidade: " + pneu.Value.Medida.IndiceVelocidade);
                 Console.WriteLine();
             }
+            
+            Onibus busao = new Onibus();
+            
+            busao.AdicionarPneu("DD", new Pneu("Goodyear", medida));
+            busao.AdicionarPneu("DE", new Pneu("Goodyear", medida));
+            
+            busao.AdicionarPneu("TDI", new Pneu("Goodyear", medida));
+            busao.AdicionarPneu("TEI", new Pneu("Goodyear", medida));
+            
+            busao.AdicionarPneu("TDE", new Pneu("Goodyear", medida));
+            busao.AdicionarPneu("TEE", new Pneu("Goodyear", medida));
 
-            //foreach (Pneu pneu in mustang.Pneus)
-            //{
-            //    Console.WriteLine("Marca: " + pneu.Marca);
-            //    Console.WriteLine("Medida: " + pneu.Medida.Largura + "/" + pneu.Medida.Perfil + pneu.Medida.Construcao + pneu.Medida.Aro);
-            //    Console.WriteLine("Indice de Carga: " + pneu.Medida.IndiceCarga);
-            //    Console.WriteLine("Indice de Velocidade: " + pneu.Medida.IndiceVelocidade);
-            //    Console.WriteLine();
-            //}
 
+            busao.Paquimetro = 50;
+            
+            List<Veiculo> veiculos = new List<Veiculo>();
+            
+            veiculos.Add(mustang);
+            veiculos.Add(busao);
+            veiculos.Add(kawazaki);
+
+            foreach (Veiculo veiculo in veiculos)
+            {
+                Console.WriteLine($"KM rodado: {veiculo.Quilometragem}");
+            }
 
         }
     }
